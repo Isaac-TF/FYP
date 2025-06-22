@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IndoorNav - Smart Campus Navigation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    input, button, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #response {
+      margin-top: 20px;
+      background: #e8f0fe;
+      padding: 15px;
+      border-radius: 6px;
+    }
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .chat-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 300px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .chat-popup textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>IndoorNav</h1>
+    <div id="authSection">
+      <div style="text-align:center">
+        <button onclick="toggleAuth('signup')">Sign Up</button>
+        <button onclick="toggleAuth('login')">Login</button>
+      </div>
+      <div id="signupForm" style="display:none">
+        <h3>Sign Up</h3>
+        <input type="email" id="signupEmail" placeholder="Email" />
+        <input type="password" id="signupPassword" placeholder="Password" />
+        <button onclick="signUp()">Create Account</button>
+      </div>
+      <div id="loginForm" style="display:none">
+        <h3>Login</h3>
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+        <button onclick="login()">Login</button>
+      </div>
+    </div>
+    <div id="navSection" style="display:none">
+      <label for="startDropdown">Starting Location:</label>
+      <select id="startDropdown">
+        <option value="">--Choose a start--</option>
+        <option value="Block A">Entrance of Block A</option>
+        <option value="Block B">Entrance of Block B</option>
+      </select>
+
+      <label for="locationDropdown">Select your destination:</label>
+      <select id="locationDropdown">
+        <option value="">--Choose a destination--</option>
+        <option value="AI Lab">AI Lab</option>
+        <option value="Spatial Lab">Spatial Lab</option>
+        <option value="Computational Lab">Computational Science Lab</option>
+        <option value="Multimedia Lab">Multimedia Lab</option>
+        <option value="Toilet">Toilet</option>
+        <option value="Tutorial 1">Tutorial Room 1</option>
+        <option value="Tutorial 2">Tutorial Room 2</option>
+        <option value="Tutorial 3">Tutorial Room 3</option>
+        <option value="Tutorial 4">Tutorial Room 4</option>
+        <option value="Tutorial 5">Tutorial Room 5</option>
+        <option value="Tutorial 6">Tutorial Room 6</option>
+        <option value="Tutorial 7">Tutorial Room 7</option>
+        <option value="Tutorial 12">Tutorial Room 12</option>
+        <option value="Tutorial 13">Tutorial Room 13</option>
+        <option value="Tutorial 14">Tutorial Room 14</option>
+        <option value="Tutorial 15">Tutorial Room 15</option>
+      </select>
+      <button onclick="getNavigation()">Get Path</button>
+      <button onclick="logout()" style="background-color:#dc3545;">Logout</button>
+      <div id="response"></div>
+    </div>
+  </div>
+  <button class="chat-button" onclick="toggleChat()">💬</button>
+  <div class="chat-popup" id="chatPopup">
+    <h4>Ask IndoorNav</h4>
+    <textarea id="chatInput" placeholder="Ask something..."></textarea>
+    <button onclick="sendChat()">Send</button>
+    <p id="chatReply" style="margin-top:10px;"></p>
+  </div>
+</body>
+</html>
