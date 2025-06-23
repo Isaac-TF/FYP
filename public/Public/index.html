@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IndoorNav Full</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>IndoorNav</h1>
+
+    <div id="navigation">
+      <h2>Location Search</h2>
+      <label>Start from:</label>
+      <select id="startDropdown">
+        <option value="">--Choose a start--</option>
+        <option value="Block A">Entrance of Block A</option>
+        <option value="Block B">Entrance of Block B</option>
+      </select>
+      <label>Destination:</label>
+      <select id="locationDropdown">
+        <option value="">--Choose a destination--</option>
+        <option value="AI Lab">AI Lab</option>
+        <option value="Spatial Lab">Spatial Lab</option>
+        <option value="Computational Lab">Computational Science Lab</option>
+        <option value="Multimedia Lab">Multimedia Lab</option>
+        <option value="Toilet">Toilet</option>
+        <option value="Tutorial 1">Tutorial Room 1</option>
+        <option value="Tutorial 2">Tutorial Room 2</option>
+        <option value="Tutorial 3">Tutorial Room 3</option>
+        <option value="Tutorial 4">Tutorial Room 4</option>
+        <option value="Tutorial 5">Tutorial Room 5</option>
+        <option value="Tutorial 6">Tutorial Room 6</option>
+        <option value="Tutorial 7">Tutorial Room 7</option>
+        <option value="Tutorial 8">Tutorial Room 8</option>
+        <option value="Tutorial 9">Tutorial Room 9</option>
+        <option value="Tutorial 10">Tutorial Room 10</option>
+        <option value="Tutorial 11">Tutorial Room 11</option>
+        <option value="Tutorial 12">Tutorial Room 12</option>
+        <option value="Tutorial 13">Tutorial Room 13</option>
+        <option value="Tutorial 14">Tutorial Room 14</option>
+        <option value="Tutorial 15">Tutorial Room 15</option>
+      </select>
+      <button onclick="getNavigation()">Get Path</button>
+      <div id="response"></div>
+    </div>
+
+    <div id="timetable">
+      <h2>Your Timetable</h2>
+      <form id="timetableForm">
+        <input type="text" id="subject" placeholder="Subject (e.g., AI Fundamentals)" required />
+        <input type="text" id="location" placeholder="Location (e.g., Lab 1)" required />
+        <input type="datetime-local" id="classTime" required />
+        <button type="submit">Add Class</button>
+      </form>
+      <table id="classTable">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Location</th>
+            <th>Date & Time</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <button class="chat-button" onclick="toggleChat()">💬</button>
+  <div class="chat-popup" id="chatPopup">
+    <h4>Ask IndoorNav</h4>
+    <textarea id="chatInput" placeholder="Ask about your schedule or locations..."></textarea>
+    <button onclick="sendChat()">Send</button>
+    <p id="chatReply" style="margin-top:10px;"></p>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const popup = document.getElementById('chatPopup');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
